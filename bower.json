@@ -1,0 +1,12 @@
+{
+  "name": "healthtracker",
+  "description": "backbone application created for udacity front end nano degree program",
+  "main": "index.js",
+  "authors": [
+    "Dan Morrison"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true
+}
