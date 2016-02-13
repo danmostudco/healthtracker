@@ -20,29 +20,42 @@
     </div>
 
 
-    <div class="row">
+    <div class="row" id="foodApp">
       <div class="col-sm-6">
 
       <h2>Search Food</h2>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Search</button>
-          </span>
+          <input id="searchFood" type="text" class="form-control" placeholder="Search for..." style="margin-bottom: 10px">
         </div><!-- /input-group -->
 
         <ul class="list-group">
-          <a class="list-group-item">Testing</a>
-          <a class="list-group-item">Testing</a>
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
         </ul>
 
       </div>
 
       <div class="col-sm-6">
         <h2>Your Food</h2>
+        <hr style="margin-top: 31px">
+          <ul class="list-group">
+            <li class="list-group-item">Testing</li>
+            <li class="list-group-item">Testing</li>
+          </ul>
       </div>
     </div>
 </div>
+
+  <script type="text/template" id="food-template">
+    <li class="list-group-item">
+      <p>
+        <%= name %> || <%= calories %>
+      </p>
+    </li>
+  </script>
 
 
   <script type="text/template" id="item-template">
@@ -54,42 +67,24 @@
     <input class="edit" value="<%= title %>">
   </script>
 
-  <script type="text/template" id="stats-template">
-    <span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
-    <ul id="filters">
-      <li>
-        <a class="selected" href="#/">All</a>
-      </li>
-
-      <li>
-        <a href="#/active">Active</a>
-      </li>
-
-      <li>
-        <a href="#/completed">Completed</a>
-      </li>
-
-    </ul>
-
-    <% if (completed) { %>
-    <button id="clear-completed">Clear completed (<%= completed %>)</button>
-    <% } %>
-  </script>
 
   <script src="js/lib/jquery.js"></script>
   <script src="js/lib/underscore.js"></script>
   <script src="js/lib/backbone.js"></script>
+
+  <!-- TODO - replace these with local storage for now -->
 
   <!-- Firebase -->
   <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
   <!-- BackboneFire -->
   <script src="https://cdn.firebase.com/libs/backbonefire/0.5.1/backbonefire.min.js"></script>
 
-  <script src="js/models/todo.js"></script>
-  <script src="js/collections/todos.js"></script>
-  <script src="js/views/todos.js"></script>
-  <script src="js/views/app.js"></script>
-  <script src="js/routers/router.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/models/food.js"></script> <!-- model for each individual food item -->
+  <script src="js/collections/foods.js"></script> <!-- collection to hold the foods added -->
+
+  <script src="js/views/food.js"></script> <!-- for each individual food item -->
+  <script src="js/views/app.js"></script> <!-- for the full application -->
+
+  <script src="js/app.js"></script> <!-- will initialize the full application -->
 </body>
 </html>
