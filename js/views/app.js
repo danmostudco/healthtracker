@@ -28,7 +28,23 @@ app.AppView = Backbone.View.extend({
 	},
 
 	generateResults: function() {
-		console.log(this.$input.val());
+		/*
+		Application ID 2a832423
+		Application Keys ecdd27eeb1e72fe0be0b40dc84434a78
+
+		test URL
+		"https://api.nutritionix.com/v1_1/search/hamburger?results=0%3A10&cal_min=0&cal_max=2000&fields=nf_calories%2Cbrand_name%2Citem_name&appId=2a832423&appKey=ecdd27eeb1e72fe0be0b40dc84434a78"
+		*/
+		var foodTerm = this.$input.val().trim();
+		var searchParam = "https://api.nutritionix.com/v1_1/search/" + foodTerm + "?results=0%3A10&cal_min=0&cal_max=2000&fields=nf_calories%2Cbrand_name%2Citem_name&appId=2a832423&appKey=ecdd27eeb1e72fe0be0b40dc84434a78"
+
+		$.ajax({
+			dataType: "json",
+			url: searchParam,
+			success: function(data) {
+				console.log(data);
+			}
+		});
 	}
 
 });
