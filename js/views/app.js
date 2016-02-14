@@ -36,7 +36,7 @@ app.AppView = Backbone.View.extend({
 
 		// setting self = this seems to fix the problem of referencing another backbone view's method...
 		// likely because calling $.ajax means that that jQuery becomes this
-		// [TO DO] but why does a global var self = this not work if declared at initialize?? Post to forums
+		// [TO DO] but why does a global var self = this not work if declared at initialize?? Post to forum
 
 		var self = this;
 		var foodTerm = this.$input.val().trim();
