@@ -30,14 +30,6 @@ app.AppView = Backbone.View.extend({
 	currentResults: [],
 
 	generateResults: function() {
-		// Application ID 2a832423
-		// Application Keys ecdd27eeb1e72fe0be0b40dc84434a78
-		// test URL https://api.nutritionix.com/v1_1/search/hamburger?results=0%3A10&cal_min=0&cal_max=2000&fields=nf_calories%2Cbrand_name%2Citem_name&appId=2a832423&appKey=ecdd27eeb1e72fe0be0b40dc84434a78
-
-		// setting self = this seems to fix the problem of referencing another backbone view's method...
-		// likely because calling $.ajax means that that jQuery becomes this
-		// [TO DO] but why does a global var self = this not work if declared at initialize?? Post to forum
-
 		var self = this;
 		var foodTerm = this.$input.val().trim();
 		var searchParam = "https://api.nutritionix.com/v1_1/search/" + foodTerm + "?results=0%3A10&cal_min=0&cal_max=2000&fields=nf_calories%2Cbrand_name%2Citem_name&appId=2a832423&appKey=ecdd27eeb1e72fe0be0b40dc84434a78"
@@ -47,14 +39,26 @@ app.AppView = Backbone.View.extend({
 			url: searchParam,
 			success: function(data) {
 				self.currentResults = data.hits;
+				self.clearResultList();
 				self.buildResultList();
 			}
 		});
 	},
 
 	buildResultList: function() {
+		console.log(this.currentResults);
 			this.currentResults.forEach(function(item){
-				console.log(item.fields.item_name);
+				// store the item's name
+				var brandName = item.fields.brand_name;
+				var itemName = item.fields.item_name;
+				var calories = item.fields.nf_calories;
+
+				// append each item to the #resultsList
+				$("#resultsList").append("<li class='list-group-item'>" + brandName + " " + itemName + " || " + calories + "</li>");
 			});
+	},
+
+	clearResultList: function() {
+		$("#resultsList").empty();
 	}
 });
