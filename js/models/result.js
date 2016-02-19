@@ -8,7 +8,7 @@ var app = app || {};
 app.Result = Backbone.Model.extend({
 
 	defaults: {
-		brandname: "",
+		brandName: "",
 		itemName: "",
 		calories: ""
 	}
