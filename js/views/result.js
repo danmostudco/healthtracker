@@ -6,12 +6,16 @@ var app = app || {};
 // Controls displaying the results
 app.ResultsView = Backbone.View.extend({
 
-	el: "#resultsList",
+	el: "#searchPortion",
 
 	initialize: function() {
 		this.listenTo(app.Results, "reset", this.generateResults);
 		this.$input = this.$("#searchFood");
 		this.$resultsList = this.$("#resultsList");
+	},
+
+	events: {
+		"keypress #searchFood": "searchOnEnter"
 	},
 
 	searchOnEnter: function( event ) {
@@ -36,14 +40,27 @@ app.ResultsView = Backbone.View.extend({
 			url: searchParam,
 			success: function(data) {
 				self.currentResults = data.hits;
-				console.log(data.hits);
+				self.clearResultList();
 				self.buildResultList();
 			}
 		});
 	},
 
 	buildResultList: function() {
+		console.log(this.currentResults);
+			this.currentResults.forEach(function(item){
+				// store the item's name
+				var brandName = item.fields.brand_name;
+				var itemName = item.fields.item_name;
+				var calories = item.fields.nf_calories;
 
+				// append each item to the #resultsList
+				$("#resultsList").append("<li class='list-group-item'>" + brandName + " " + itemName + " || " + calories + "</li>");
+			});
+	},
+
+	clearResultList: function() {
+		$("#resultsList").empty();
 	}
 
 });
