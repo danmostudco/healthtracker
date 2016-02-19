@@ -11,7 +11,7 @@ var ResultList = Backbone.Collection.extend({
 	model: app.Result,
 
 	// save all of the results under the "result"
-	localResults: new Backbone.LocalStorage("resultsStorage"),
+	localStorage: new Backbone.LocalStorage("resultsStorage"),
 
 	clearResults: function(){
 		this.reset();

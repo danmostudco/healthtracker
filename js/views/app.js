@@ -11,6 +11,8 @@ app.AppView = Backbone.View.extend({
 	initialize: function() {
 		this.$input = this.$("#searchFood");
 		this.$resultsList = this.$("#resultsList");
+
+		this.listenTo(app.Results, 'add', this.renderResult);
 	},
 
 	events: {
@@ -39,26 +41,35 @@ app.AppView = Backbone.View.extend({
 			url: searchParam,
 			success: function(data) {
 				self.currentResults = data.hits;
-				self.clearResultList();
 				self.buildResultList();
 			}
 		});
 	},
 
 	buildResultList: function() {
-		console.log(this.currentResults);
-			this.currentResults.forEach(function(item){
-				// store the item's name
-				var brandName = item.fields.brand_name;
-				var itemName = item.fields.item_name;
-				var calories = item.fields.nf_calories;
+		this.clearResultList();
+		this.currentResults.forEach(function(item){
+			// store the item's name
+			var passedBrandName = item.fields.brand_name;
+			var passedItemName = item.fields.item_name;
+			var passedCalories = item.fields.nf_calories;
 
-				// append each item to the #resultsList
-				$("#resultsList").append("<li class='list-group-item'>" + brandName + " " + itemName + " || " + calories + "</li>");
+			app.Results.create({
+				brandName: passedBrandName,
+				itemName: passedItemName,
+				calories: passedCalories
 			});
+		});
 	},
 
 	clearResultList: function() {
+		app.Results.reset();
 		$("#resultsList").empty();
+	},
+
+	renderResult: function( result ) {
+		var view = new app.ResultView({model: result});
+		$("#resultsList").append( view.render().el);
 	}
+
 });

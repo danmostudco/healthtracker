@@ -4,10 +4,12 @@ var app = app || {};
 // ---------------
 
 // Controls displaying the results
-app.ResultsView = Backbone.View.extend({
+app.ResultView = Backbone.View.extend({
 
-	el: "li",
+	template: _.template( $("#result-template").html() ),
 
-	template: _.template( $("#result-template").html() )
-
+	render: function() {
+		this.$el.html( this.template(this.model.attributes) );
+		return this;
+	}
 });
