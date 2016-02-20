@@ -4,6 +4,8 @@ var app = app || {};
 // ------------------
 
 
+
+
 var FoodList = Backbone.Collection.extend({
 
 	model: app.Food,

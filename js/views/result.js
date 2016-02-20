@@ -11,7 +11,7 @@ app.ResultView = Backbone.View.extend({
 	template: _.template( $("#result-item").html() ),
 
 	events: {
-		"click .clicker": 'addToFood'
+		"click .clicker": 'addToFoodList'
 	},
 
 	render: function() {
@@ -19,8 +19,11 @@ app.ResultView = Backbone.View.extend({
 		return this;
 	},
 
-	addToFood: function() {
-		console.log("click triggered");
+	addToFoodList: function() {
+		app.FoodList.create({
+			brandName: this.model.get("brandName"),
+			itemName: this.model.get("itemName"),
+			calories: this.model.get("calories")
+		});
 	}
-
 });

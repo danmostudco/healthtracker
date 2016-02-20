@@ -13,11 +13,13 @@ app.AppView = Backbone.View.extend({
 		this.$resultsList = this.$("#resultsList");
 
 		this.listenTo(app.Results, 'add', this.renderResult);
-		this.listenTo(app.FoodList, 'add', this.renderResult);
+		this.listenTo(app.FoodList, 'add', this.renderFood);
 		app.Results.fetch();
+		app.FoodList.fetch();
 
 		// if a search was run, ensure results stay even if page is refreshed
 		this.renderAllResults();
+		this.renderAllFood();
 	},
 
 	events: {
@@ -84,15 +86,23 @@ app.AppView = Backbone.View.extend({
 	renderAllResults: function () {
 		$("#resultsList").empty();
 		app.Results.each(this.renderResult, this);
+		console.log("results rendered");
 	},
+
 
 	// ####
 	// Functions utilized by the FOOD LIST portion
 	// ###
 
 	renderFood: function( result ) {
-		var view = new app.ResultView({model: result});
+		var view = new app.FoodView({model: result});
 		$("#foodList").append( view.render().el);
+		console.log("food rendered");
+	},
+
+	renderAllFood: function() {
+		$("#foodList").empty();
+		app.FoodList.each(this.renderFood, this);
 	}
 
 });
