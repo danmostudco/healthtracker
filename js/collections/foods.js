@@ -6,7 +6,7 @@ var app = app || {};
 
 var FoodList = Backbone.Collection.extend({
 
-	model: app.Result,
+	model: app.Food,
 
 	// save all of the results under the "result"
 	localStorage: new Backbone.LocalStorage("foodStorage"),

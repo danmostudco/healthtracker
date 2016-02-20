@@ -13,14 +13,15 @@ app.AppView = Backbone.View.extend({
 		this.$resultsList = this.$("#resultsList");
 
 		this.listenTo(app.Results, 'add', this.renderResult);
+		this.listenTo(app.FoodList, 'add', this.renderResult);
 		app.Results.fetch();
 
 		// if a search was run, ensure results stay even if page is refreshed
-		this.renderAll();
+		this.renderAllResults();
 	},
 
 	events: {
-		"keypress #searchFood": "searchOnEnter"
+		"keypress #searchFood": "searchOnEnter",
 	},
 
 	searchOnEnter: function( event ) {
@@ -66,6 +67,10 @@ app.AppView = Backbone.View.extend({
 		});
 	},
 
+	// ####
+	// Functions utilized by the RESULTS LIST portion
+	// ###
+
 	clearResultList: function() {
 		app.Results.clearResults();
 		$("#resultsList").empty();
@@ -76,11 +81,17 @@ app.AppView = Backbone.View.extend({
 		$("#resultsList").append( view.render().el);
 	},
 
-	renderAll: function () {
+	renderAllResults: function () {
 		app.Results.each(this.renderResult, this);
-	}
+	},
 
-	// TO DO: need a render all to run on initialize, if I refresh it should persist
-	// this will be needed functionality for the "your food" list
+	// ####
+	// Functions utilized by the FOOD LIST portion
+	// ###
+
+	renderFood: function( result ) {
+		var view = new app.ResultView({model: result});
+		$("#foodList").append( view.render().el);
+	}
 
 });
