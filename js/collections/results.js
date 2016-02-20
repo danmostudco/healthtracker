@@ -14,7 +14,9 @@ var ResultList = Backbone.Collection.extend({
 	localStorage: new Backbone.LocalStorage("resultsStorage"),
 
 	clearResults: function(){
-		this.reset();
+		_.invoke(this.toArray(), 'destroy');
+		// clears out the collection
+		// taken from http://stackoverflow.com/questions/26207835/destroy-all-models-in-backbone-collection-persisted-in-local-storage
 	}
 
 });

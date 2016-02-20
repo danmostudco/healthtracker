@@ -13,6 +13,10 @@ app.AppView = Backbone.View.extend({
 		this.$resultsList = this.$("#resultsList");
 
 		this.listenTo(app.Results, 'add', this.renderResult);
+		app.Results.fetch();
+
+		// if a search was run, ensure results stay even if page is refreshed
+		this.renderAll();
 	},
 
 	events: {
@@ -63,13 +67,20 @@ app.AppView = Backbone.View.extend({
 	},
 
 	clearResultList: function() {
-		app.Results.reset();
+		app.Results.clearResults();
 		$("#resultsList").empty();
 	},
 
 	renderResult: function( result ) {
 		var view = new app.ResultView({model: result});
 		$("#resultsList").append( view.render().el);
+	},
+
+	renderAll: function () {
+		app.Results.each(this.renderResult, this);
 	}
+
+	// TO DO: need a render all to run on initialize, if I refresh it should persist
+	// this will be needed functionality for the "your food" list
 
 });
