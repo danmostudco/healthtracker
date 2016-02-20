@@ -82,6 +82,7 @@ app.AppView = Backbone.View.extend({
 	},
 
 	renderAllResults: function () {
+		$("#resultsList").empty();
 		app.Results.each(this.renderResult, this);
 	},
 

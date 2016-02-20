@@ -21,7 +21,7 @@
 
 
     <div class="row" id="foodApp">
-      <div class="col-sm-6">
+      <div class="col-sm-6" id="searchSection">
 
       <h2>Search Food</h2>
         <div class="input-group">
@@ -46,16 +46,16 @@
 
   <script type="text/template" id="result-template">
     <li class="list-group-item">
-      <p>
-        <%= brandName %> <%= itemName %> || <%= calories %>
+      <p class="clicker">
+        <%= brandName %> <%= itemName %> || <%= calories %> this is result
       </p>
     </li>
   </script>
 
-  <script type="text/template" id="food-template">
+  <script type="text/template" id="food-item">
     <li class="list-group-item">
       <p>
-        <%= brandName %> <%= itemName %> || <%= calories %>
+        <%= brandName %> <%= itemName %> || <%= calories %> this is food
       </p>
     </li>
   </script>
