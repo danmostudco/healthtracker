@@ -37,15 +37,22 @@
       <div class="col-sm-6">
         <h2>Your Food</h2>
         <hr style="margin-top: 31px">
-          <ul class="list-group">
-            <li class="list-group-item">Testing</li>
-            <li class="list-group-item">Testing</li>
+          <ul class="list-group" id="foodList">
+
           </ul>
       </div>
     </div>
 </div>
 
   <script type="text/template" id="result-template">
+    <li class="list-group-item">
+      <p>
+        <%= brandName %> <%= itemName %> || <%= calories %>
+      </p>
+    </li>
+  </script>
+
+  <script type="text/template" id="food-template">
     <li class="list-group-item">
       <p>
         <%= brandName %> <%= itemName %> || <%= calories %>
