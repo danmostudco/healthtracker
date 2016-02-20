@@ -4,7 +4,7 @@ var app = app || {};
 // ---------------
 
 // Controls displaying the results
-app.ResultView = Backbone.View.extend({
+app.FoodView = Backbone.View.extend({
 
 	template: _.template( $("#food-item").html() ),
 

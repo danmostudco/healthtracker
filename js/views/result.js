@@ -8,10 +8,10 @@ app.ResultView = Backbone.View.extend({
 
 	class: "clickMe",
 
-	template: _.template( $("#result-template").html() ),
+	template: _.template( $("#result-item").html() ),
 
 	events: {
-		"click .clicker": 'addToFood',
+		"click .clicker": 'addToFood'
 	},
 
 	render: function() {
