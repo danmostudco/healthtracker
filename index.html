@@ -8,6 +8,11 @@
   <title>Health Tracker Prototype</title>
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <style>
+    #foodList .deleter {
+      color:red;
+    }
+  </style>
 
 </head>
 <body>
@@ -47,7 +52,7 @@
   <script type="text/template" id="result-item">
     <li class="list-group-item">
       <p class="clicker">
-        <%= brandName %> <%= itemName %> || <%= calories %> this is result
+        <%= brandName %> <%= itemName %> || <%= calories %>
       </p>
     </li>
   </script>
@@ -55,8 +60,12 @@
   <script type="text/template" id="food-item">
     <li class="list-group-item">
       <p>
-        <%= brandName %> <%= itemName %> || <%= calories %> this is food
+        <%= brandName %> <%= itemName %> || <%= calories %>
+        <span class="deleter">
+          Delete
+        </span>
       </p>
+
     </li>
   </script>
 

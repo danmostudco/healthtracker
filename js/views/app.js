@@ -14,6 +14,8 @@ app.AppView = Backbone.View.extend({
 
 		this.listenTo(app.Results, 'add', this.renderResult);
 		this.listenTo(app.FoodList, 'add', this.renderFood);
+		this.listenTo(app.FoodList, 'all', this.renderAllFood);
+
 		app.Results.fetch();
 		app.FoodList.fetch();
 
@@ -97,7 +99,6 @@ app.AppView = Backbone.View.extend({
 	renderFood: function( result ) {
 		var view = new app.FoodView({model: result});
 		$("#foodList").append( view.render().el);
-		console.log("food rendered");
 	},
 
 	renderAllFood: function() {
