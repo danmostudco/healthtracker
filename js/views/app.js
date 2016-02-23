@@ -104,6 +104,16 @@ app.AppView = Backbone.View.extend({
 	renderAllFood: function() {
 		$("#foodList").empty();
 		app.FoodList.each(this.renderFood, this);
+		this.renderCalories();
+	},
+
+	renderCalories: function() {
+		var calorieUI = $("#calorieCount");
+		var currentTotal = app.FoodList.sumCalories();
+
+		calorieUI.empty();
+		calorieUI.html(currentTotal + " calories");
+
 	}
 
 });
