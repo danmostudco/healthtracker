@@ -17,6 +17,13 @@ var FoodList = Backbone.Collection.extend({
 		_.invoke(this.toArray(), 'destroy');
 		// clears out the collection
 		// taken from http://stackoverflow.com/questions/26207835/destroy-all-models-in-backbone-collection-persisted-in-local-storage
+	},
+
+	sumCalories: function(){
+		// Reduce function taken from
+		// http://stackoverflow.com/questions/7722048/getting-the-sum-of-a-collection-all-models-with-backbone-js
+		return this.reduce(function(memo, value)
+			{ return memo + value.get("calories"); }, 0);
 	}
 
 });
