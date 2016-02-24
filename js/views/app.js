@@ -51,6 +51,9 @@ app.AppView = Backbone.View.extend({
 			success: function(data) {
 				self.currentResults = data.hits;
 				self.buildResultList();
+			},
+			error: function() {
+				self.displayError();
 			}
 		});
 	},
@@ -88,7 +91,6 @@ app.AppView = Backbone.View.extend({
 	renderAllResults: function () {
 		$("#resultsList").empty();
 		app.Results.each(this.renderResult, this);
-		console.log("results rendered");
 	},
 
 
@@ -114,6 +116,11 @@ app.AppView = Backbone.View.extend({
 		calorieUI.empty();
 		calorieUI.html(currentTotal + " calories");
 
+	},
+
+	displayError: function() {
+		this.clearResultList();
+		$("#resultsList").append("<li class='list-group-item'>" + "Could not retrieve results" + "</li>");
 	}
 
 });
